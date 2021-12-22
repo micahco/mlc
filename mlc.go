@@ -9,7 +9,6 @@ func main() {
 	n := time.Now().Local()
 	j := julian(n)
 	c := longCount(j)
-	//f := time.Now().Local()
 	for i := range c {
 		fmt.Printf("%v", c[i])
 		if i != len(c)-1 {
@@ -20,14 +19,16 @@ func main() {
 }
 
 func julian(t time.Time) float64 {
-	const j = 2453738.4195 // January 1, 1970 (unix epoch)
+	// 1970.01.01 - unix epoch
+	const j = 2453738.4195
 	u := time.Unix(1136239445, 0)
 	const d = float64(86400. * time.Second)
 	return j + float64(t.Sub(u))/d
 }
 
 func longCount(j float64) [5]int {
-	const b = 2456283. // December 21, 2012 (13 b'ak'tun)
+	// 2012.12.21 - 13th b'ak'tun
+	const b = 2456283.
 	d := int(j - b)
 	c := [5]int{13, 0, 0, 0, 0}
 	for i := 0; i < d; i++ {
@@ -49,5 +50,3 @@ func longCount(j float64) [5]int {
 	}
 	return c
 }
-
-// http://www.russellcottrell.com/longcount/
