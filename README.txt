@@ -1,1 +1,0 @@
-Mayan long count
